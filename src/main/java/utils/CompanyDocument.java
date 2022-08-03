@@ -1,10 +1,13 @@
 package utils;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import tfidf.tf.RawTermFrequency;
 import tfidf.tf.TermFrequency;
 import tokenization.BasicTokenizer;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class CompanyDocument extends Document {
@@ -98,6 +101,21 @@ public class CompanyDocument extends Document {
     @Override
     public String toString() {
         return "[Document|" + id + "]: " + bagOfWords + "\n " + "name: " + name + "\n address: " + address + "\n headquarters: " + headquarters + "\n analysis field: " + field + "\n other identifiers: " + registries;
+    }
+
+    public JSONObject toJson() {
+        JSONObject company = new JSONObject();
+        company.put("id", this.id);
+        company.put("name", this.name);
+        company.put("headquarters", this.headquarters);
+        company.put("address", this.address);
+
+        JSONArray integrations = new JSONArray();
+        for (Map.Entry<String, String> integration : this.registries.entrySet()) {
+            integrations.put(new JSONObject(integration.getKey(), integration.getValue()));
+        }
+        company.put("integrations", integrations);
+        return company;
     }
 
 }
