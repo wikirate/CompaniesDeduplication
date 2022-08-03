@@ -1,8 +1,10 @@
 package utils;
 
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.Predicate;
 
@@ -12,15 +14,15 @@ import org.apache.commons.collections4.Predicate;
  *
  * @author vasgat
  */
-public class Corpus<T> implements Iterable<T> {
+public class Corpus<T extends Document> implements Iterable<T> {
 
-    private HashSet<T> corpus;
+    private HashMap<String, T> corpus;
 
     /**
      * Corpus constructor
      */
     public Corpus() {
-        this.corpus = new HashSet();
+        this.corpus = new HashMap();
     }
 
     /**
@@ -29,7 +31,7 @@ public class Corpus<T> implements Iterable<T> {
      * @param document
      */
     public void addDocument(T document) {
-        corpus.add(document);
+        corpus.put(document.id, document);
     }
 
     /**
@@ -42,22 +44,24 @@ public class Corpus<T> implements Iterable<T> {
     }
 
     /**
-     *
      * @return the iterator of the corpus
      */
     @Override
     public Iterator<T> iterator() {
-        Iterator<T> it = corpus.iterator();
+        Iterator<T> it = corpus.values().iterator();
         return it;
     }
 
     /**
-     *
      * @param predicate
      * @return
      */
     public Iterator<T> iterator(Predicate<T> predicate) {
-        HashSet subset = new HashSet(CollectionUtils.select(corpus, predicate));
+        HashSet subset = new HashSet(CollectionUtils.select(corpus.values(), predicate));
         return subset.iterator();
+    }
+
+    public T getDocument(String id) {
+        return corpus.get(id);
     }
 }
