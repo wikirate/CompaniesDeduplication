@@ -22,4 +22,4 @@ License
 -------
 
 The library is available as Open Source under the terms of
-the `GNU General Public License v3 (GPLv3) <https://www.gnu.org/licenses/gpl-3.0.txt>`_.
+the [GNU General Public License v3 (GPLv3)](https://www.gnu.org/licenses/gpl-3.0.txt>).
