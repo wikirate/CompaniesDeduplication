@@ -8,15 +8,15 @@ satisfy the defined similarity thresholds.
 
 ## Usage
 
-.. code-block:: java
-
-    try {
-        DuplicateDetection dedup = new DuplicateDetection("src/test/resources/test_companies.csv");
-        dedup.run(2);
-        dedup.store(OUTPUT_FORMAT.JSON);
-    } catch (Exception ex) {
-        throw new Exception(e);
-    }
+```java
+try {
+    DuplicateDetection dedup = new DuplicateDetection("src/test/resources/test_companies.csv");
+    dedup.run(2);
+    dedup.store(OUTPUT_FORMAT.JSON);
+} catch (Exception ex) {
+    throw new Exception(e);
+}
+```
 
 License
 -------
