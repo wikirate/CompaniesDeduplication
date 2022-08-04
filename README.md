@@ -61,7 +61,7 @@ The user can set their own similarity thresholds applied before running the dedu
 
 ```java
 dedup.setNameSimThreshold(0.82); //the default is set to 0.87
-        dedup.setAddressSimThreshold(0.45);  //the default is set to 0.5
+dedup.setAddressSimThreshold(0.45);  //the default is set to 0.5
 ```
 
 Address data tends to be noisy or lacking information, thus we tend to apply more relaxed similarity thresholds than on
